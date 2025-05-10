@@ -16,7 +16,11 @@ if (n / 10)
 print(n / 10);
 _putchar(n % 10 + '0');
 }
-
+/**
+ * print_array - print an array of int with putchar
+ * @a: array of int
+ * @n: lenght of array
+ */
 void print_array(int *a, int n)
 {
 int i;
