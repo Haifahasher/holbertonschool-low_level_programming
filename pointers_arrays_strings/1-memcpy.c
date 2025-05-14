@@ -7,12 +7,14 @@
  * @n: number of bytes to copy
  * Return: pointer to dest
  */
-char *_memcpy(char *dest, char *src, unsigned int n)
+void *_memcpy(void *dest, const void *src, size_t n)
 {
 unsigned int i;
+unsigned char *destination = dest;
+const unsigned char *source = src;
 
 for (i = 0; i < n; i++)
-dest[i] = src[i];
+destination[i] = source[i];
 
 return (dest);
 }
