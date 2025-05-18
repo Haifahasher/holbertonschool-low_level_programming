@@ -2,24 +2,28 @@
 #include <stdlib.h>
 
 /**
- * main - adds two integers passed as arguments
- * @argc: number of command-line arguments
- * @argv: array of argument strings
+ * main - adds positive numbers
+ * @argc: number of arguments
+ * @argv: array of arguments
  *
- * Return: 0 on success, 1 on error
+ * Return: 0 on success, 1 on failure
  */
 int main(int argc, char *argv[])
 {
-int a, b, sum;
-if (argc != 3)
+int sum = 0, i, j;
+
+for (i = 1; i < argc; i++)
+{
+for (j = 0; argv[i][j] != '\0'; j++)
+{
+if (argv[i][j] < '0' || argv[i][j] > '9')
 {
 printf("Error\n");
 return (1);
 }
-a = atoi(argv[1]);
-b = atoi(argv[2]);
-sum = a + b;
+}
+sum += atoi(argv[i]);
+}
 printf("%d\n", sum);
-
 return (0);
 }
