@@ -10,46 +10,31 @@
  *
  * Return: pointer to the newly allocated dog_t, or NULL on failure
  */
+
 dog_t *new_dog(char *name, float age, char *owner)
 {
-dog_t *nd;
-char *name_copy, *owner_copy;
-size_t len;
+char *temp_name;
+char *temp_owner;
+dog_t *new_doggo;
 
+temp_name = malloc(sizeof(*name) * (strlen(name) + 1));
+temp_owner = malloc(sizeof(*owner) * (strlen(owner) + 1));
+new_doggo = malloc(sizeof(dog_t));
 
-if (name == NULL || owner == NULL)
-return (NULL);
-
-
-nd = malloc(sizeof(*nd));
-if (nd == NULL)
-return (NULL);
-
-
-len = strlen(name);
-name_copy = malloc(len + 1);
-if (name_copy == NULL)
+if (temp_name && temp_owner && new_doggo)
 {
-free(nd);
+strcpy(temp_name, name);
+strcpy(temp_owner, owner);
+new_doggo->name = temp_name;
+new_doggo->age = age;
+new_doggo->owner = temp_owner;
+}
+else
+{
+free(temp_name);
+free(temp_owner);
+free(new_doggo);
 return (NULL);
 }
-strcpy(name_copy, name);
-
-
-len = strlen(owner);
-owner_copy = malloc(len + 1);
-if (owner_copy == NULL)
-{
-free(name_copy);
-free(nd);
-return (NULL);
-}
-strcpy(owner_copy, owner);
-
-
-nd->name  = name_copy;
-nd->age   = age;
-nd->owner = owner_copy;
-
-return (nd);
+return (new_doggo);
 }
